@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -17,6 +18,7 @@ class AddCompetitors extends Migration
             $table->increments('id');
             $table->string('name');
             $table->enum('gender', ['male', 'female']);
+            $table->double('weight');
             $table->timestamps();
         });
     }

@@ -14,26 +14,19 @@ class WorkoutSeeder extends Seeder
     {
         $workouts = [
             [ 
-                'name' => 'Deadlift & Burpees', 
-                'type' => 'AMRAP'
+                'name' => 'Squat', 
+                'type' => '1RM'
             ],
             [ 
-                'name' => 'Squats & Laufen', 
-                'type' => 'ForTime'
-            ],
-            [ 
-                'name' => 'KBS & PushUps', 
-                'type' => 'ForTime'
+                'name' => 'Bench Press', 
+                'type' => '1RM'
             ],
             [ 
                 'name' => 'Deadlift', 
                 'type' => '1RM'
-            ],
-            [ 
-                'name' => 'Ground To Overhead', 
-                'type' => '1RM'
             ]
         ];
+
         foreach ($workouts as $w)  {
             Workout::create($w);
         }

@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-use App\Workout;
-
-class AddWorkout extends Migration
+class AddCompetition extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +13,7 @@ class AddWorkout extends Migration
      */
     public function up()
     {
-        Schema::create('workouts', function (Blueprint $table) {
-            $table->increments('id');
-
-            $table->string('name');
-            $table->enum('type', Workout::TYPES);
-
-            $table->timestamps();
-        });
+        //
     }
 
     /**
@@ -32,6 +23,6 @@ class AddWorkout extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workouts');
+        //
     }
 }

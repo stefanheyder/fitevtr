@@ -8,7 +8,8 @@ class Competitor extends Model
 {
     protected $fillable = [
         'name',
-        'gender'
+        'gender',
+        'weight'
     ];
 
     public function scores()

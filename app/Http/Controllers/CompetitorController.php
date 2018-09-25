@@ -14,7 +14,7 @@ class CompetitorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        //$this->middleware('auth')->except(['index', 'show']);
     }
     
 
@@ -46,10 +46,10 @@ class CompetitorController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->get('name') == "") {
+        if ($request->get('name') == "" || $request->get('weight') == "") {
             return Redirect::back();
         }
-        $c = Competitor::create($request->all('name', 'gender'));
+        $c = Competitor::create($request->all('name', 'gender', 'weight'));
         return Redirect::to('competitor/' . $c->id);
     }
 
