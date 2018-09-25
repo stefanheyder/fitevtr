@@ -18,6 +18,15 @@
             <option value="female" {{$competitor->gender == "female" ? "selected" : ""}}>weiblich</option>
         </select>
     </div>
+    <div class="form-group">
+        <label for="weight">Gewicht</label>
+        <input
+            class="form-control"
+            id="weight"
+            name="weight"
+            placeholder="Gewicht"
+            value="{{$competitor->weight}}">
+    </div>
     {{ Form::submit('Update', ['class' => 'btn btn-success btn-big col']) }}
     {{ Form::close() }}
     {{ Form::model($competitor, ['route' => ['competitor.destroy', $competitor->id]]) }}

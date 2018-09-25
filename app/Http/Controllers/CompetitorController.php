@@ -49,7 +49,7 @@ class CompetitorController extends Controller
         if ($request->get('name') == "" || $request->get('weight') == "") {
             return Redirect::back();
         }
-        $c = Competitor::create($request->all('name', 'gender', 'weight'));
+        $c = Competitor::create($request->all());
         return Redirect::to('competitor/' . $c->id);
     }
 
