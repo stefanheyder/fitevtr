@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Competitor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
 
 class CompetitorController extends Controller
 {
+    /**
+     * @param mixed 
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -14,50 +25,54 @@ class CompetitorController extends Controller
      */
     public function index()
     {
-        //
+        return View::make('competitor.index');
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return View::make('competitor.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        if ($request->get('name') == "") {
+            return Redirect::back();
+        }
+        $c = Competitor::create($request->all('name', 'gender'));
+        return Redirect::to('competitor/' . $c->id);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Competitor  $competitor
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function show(Competitor $competitor)
     {
-        //
+        return View::make('competitor.show', compact('competitor'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Competitor  $competitor
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(Competitor $competitor)
     {
-        //
+        return View::make('competitor.edit', compact('competitor'));
     }
 
     /**
@@ -69,7 +84,9 @@ class CompetitorController extends Controller
      */
     public function update(Request $request, Competitor $competitor)
     {
-        //
+        $competitor->fill($request->all());
+        $competitor->save();
+        return Redirect::back();
     }
 
     /**
@@ -80,6 +97,7 @@ class CompetitorController extends Controller
      */
     public function destroy(Competitor $competitor)
     {
-        //
+        $competitor->delete();
+        return Redirect::back();
     }
 }

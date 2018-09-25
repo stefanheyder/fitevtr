@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Workout::class, function (Faker $faker) {
     $type = $faker->randomElement(Workout::TYPES);
 
-    $amountOfEx = $faker->numberBetween(3,5);
+    $amountOfEx = 1;
     $exercises = $faker->randomElements([
             'Burpees',
             'KettleBell Swings',
@@ -20,6 +20,6 @@ $factory->define(App\Workout::class, function (Faker $faker) {
 
     return [
         'type' => $type,
-        'name' => $type . implode('', $exercises)
+        'name' => implode(', ', $exercises)
     ];
 });

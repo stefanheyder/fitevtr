@@ -18,6 +18,30 @@ class Competitor extends Model
 
     public function workouts()
     {
-        return $this->hasManyThrough('App\Workout', 'App\Score');
+        return $this->belongsToMany('App\Workout', 'scores')->distinct();
+    }
+
+    public function scoresInWorkout(Workout $workout)
+    {
+        return $workout->scores()->where('competitor_id', $this->id);
+    }
+
+    public function bestScore(Workout $workout)
+    {
+        return $this->scoresInWorkout($workout)->orderBy('amount', $workout->sortOrder())->first()['amount'];
+    }
+
+    public function points(Workout $workout)
+    {
+        $competitors = $workout->competitors();
+    }
+
+    public function totalPoints()
+    {
+        $workouts = Workout::all();
+
+        return $workouts ->map(function($w) {
+            return $this->points($w);
+        })->sum();
     }
 }

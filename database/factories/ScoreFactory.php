@@ -10,7 +10,7 @@ $factory->define(App\Score::class, function (Faker $faker) {
     $competitor = Competitor::query()->inRandomOrder()->first();
 
     return [
-        'score' => $faker->numberBetween(100,400),
+        'amount' => $faker->numberBetween(100,400),
         'workout_id' => $workout->id,
         'competitor_id' => $competitor->id
     ];

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Competitor;
 use App\Score;
+use App\Workout;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ScoreController extends Controller
 {
@@ -31,11 +35,24 @@ class ScoreController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $competitor = Competitor::find($request->get('competitor_id'));
+
+        $workout = Workout::find($request->get('workout_id'));
+        $isFemale = $competitor->gender == 'female';
+
+        $multiplicand = $isFemale && $workout->type == '1RM' ? 1.8 : 1;
+
+        Score::create([
+            'workout_id' => $request->get('workout_id'),
+            'competitor_id' => $request->get('competitor_id'),
+            'amount' => $multiplicand * $request->get('amount')
+        ]);
+
+        return Redirect::back()->withInput($request->all());
     }
 
     /**
@@ -80,6 +97,8 @@ class ScoreController extends Controller
      */
     public function destroy(Score $score)
     {
-        //
+        $score->delete();
+
+        return Redirect()->back();
     }
 }

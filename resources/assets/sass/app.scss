@@ -8,7 +8,61 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import '~bootstrap-table/dist/bootstrap-table.css';
+
+@import '~font-awesome/scss/font-awesome.scss';
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.table {
+    text-align: center;
+}
+
+.card-view {
+    text-align: left;
+}
+
+
+.only-in-card {
+    visibility: hidden;
+    display: none;
+}
+
+.card-view .only-in-card {
+    visibility: visible;
+    display:inline;
+}
+
+.not-in-card {
+    visibility: visible;
+    display:inline;
+}
+
+.card-view .not-in-card {
+    visibility: hidden;
+    display: none;
+}
+
+.btn-big {
+    font-size:80px;
+    white-space: normal;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.card-view .value {
+    float: right;
+    text-align: right;
+}
+
+.card-views:first-child {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-view:nth-child(odd) {
+    color:red;
 }

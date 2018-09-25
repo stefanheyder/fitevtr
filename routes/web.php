@@ -13,6 +13,18 @@
 
 
 Route::resource('competitor', 'CompetitorController');
-Route::resource('workout', 'WorkoutController');
-Route::resource('score', 'ScoreController');
+Route::resource('score', 'ScoreController')
+    ->middleware('auth');
 
+
+Route::get('judge/workout/{w}/competitor/{c}', 'JudgingController@startJudging')
+    ->name('judge.workout')
+    ->middleware('auth');
+
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')
+    ->name('logout')
+    ->middleware('auth');
+
+Route::Redirect('/', 'competitor');

@@ -21,4 +21,9 @@ class Score extends Model
     {
         return $this->belongsTo('App\Workout');
     }
+
+    public function formatted()
+    {
+        return $this->workout->formatScore($this->amount);
+    }
 }

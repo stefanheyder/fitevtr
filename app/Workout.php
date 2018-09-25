@@ -20,11 +20,45 @@ class Workout extends Model
 
     public function competitors()
     {
-        return $this->hasManyThrough('App\Competitor', 'App\Score');
+        return $this->belongsToMany('App\Competitor', 'scores')->distinct();
     }
 
     public function scores()
     {
         return $this->hasMany('App\Score');
     }
+
+    public function sortOrder()
+    {
+        return $this->isForTime() ? 'asc' : 'desc';
+    }
+
+    /**
+     * True if type is for time
+     *
+     * @return void
+     */
+    public function isForTime()
+    {
+        return $this->type == 'ForTime';
+    }
+    
+
+    /**
+     * Format score (e.g. AMRAP => Number, ForTime => Minute:seconds)
+     *
+     * @return void
+     */
+    public function formatScore($amount)
+    {
+        if (is_null($amount) ) {
+            return "";
+        }
+        if ($this->isForTime()) {
+            return gmdate("i:s", $amount);
+        }
+
+        return $amount;
+    }
+
 }
