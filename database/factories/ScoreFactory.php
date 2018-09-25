@@ -10,8 +10,9 @@ $factory->define(App\Score::class, function (Faker $faker) {
     $competitor = Competitor::query()->inRandomOrder()->first();
 
     return [
-        'amount' => $faker->numberBetween(100,400),
+        'amount' => $faker->numberBetween(60,120),
         'workout_id' => $workout->id,
-        'competitor_id' => $competitor->id
+        'competitor_id' => $competitor->id,
+        'validity' => $faker->randomElement(['valid', 'undecided', 'invalid'])
     ];
 });

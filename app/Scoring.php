@@ -72,18 +72,27 @@ class Scoring
         return $allPoints->firstWhere('competitor.id', $competitor->id)['points'];
     }
 
-    public static function wilksCoefficient(Competitor $competitor, $total) 
+    public static function wilksPoints($competitor)
     {
-        $gender = $competitor->gender;
-
-        $w = $competitor->weight;
-        $c = wilks_poly_coeffs[$gender];
-        
-        $poly = $c[0] + $c[1] * $w + $c[2] * $w ^ 2 + $c[3] * $w ^ 3 + $c[4] * $w ^ 4 + $c[5] * $w ^ 5 + $c[6] * $w ^ 6;
-
-        $wilks_coefficient = 500 / $poly;
+        $wilks_coefficient = self::wilksCoeff($competitor->weight, $competitor->gender);
     
-        return $total * $wilks_coefficient;
+        return $competitor->powerliftingTotal() * $wilks_coefficient;
+    }
+
+    public static function wilksCoeff($weight, $gender) 
+    {
+        $w = $weight;
+
+        $c = self::wilks_poly_coeffs[$gender];
+
+        $poly = $c[0] +
+            $c[1] * $w +
+            $c[2] * ($w ** 2) +
+            $c[3] * ($w ** 3) +
+            $c[4] * ($w ** 4) +
+            $c[5] * ($w ** 5);
+
+        return 500 / $poly;
     }
 }
 

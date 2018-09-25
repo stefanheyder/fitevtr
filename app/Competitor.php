@@ -45,4 +45,28 @@ class Competitor extends Model
             return $this->points($w);
         })->sum();
     }
+
+    public function powerliftingTotal()
+    {
+        $workouts = Workout::query()->where('type', '1RM')->get();
+
+        return $workouts->map(function ($w) {
+            $validScores = $this->scoresInWorkout($w)->where('validity', 'valid')->get();
+
+            if ($validScores->isEmpty()) {
+                return 0;
+            }
+
+            return $validScores->max('amount');
+        })->sum();
+    }
+
+    public function powerlifitingScores(Workout $workout) 
+    {
+        return $this->scoresInWorkout($workout)
+                       ->get()
+                       ->take(3)
+                       ->pad(3, new Score(['amount' => 0, 'validity' => 'undecided']));
+
+    }
 }

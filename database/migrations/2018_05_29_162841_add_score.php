@@ -18,7 +18,9 @@ class AddScore extends Migration
 
             $table->integer('competitor_id')->references('id')->on('competitors');
             $table->integer('workout_id')->references('id')->on('workouts');
-            $table->integer('amount');
+            $table->float('amount');
+
+            $table->enum('validity', ['valid', 'undecided', 'invalid'])->default('undecided');
 
             $table->timestamps();
         });

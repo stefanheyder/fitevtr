@@ -28,3 +28,5 @@ Route::post('logout', 'Auth\LoginController@logout')
     ->middleware('auth');
 
 Route::Redirect('/', 'competitor');
+
+Route::resource('flight', 'FlightController');

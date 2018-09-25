@@ -9,7 +9,8 @@ class Score extends Model
     protected $fillable = [
         'amount',
         'competitor_id',
-        'workout_id'
+        'workout_id',
+        'validity'
     ];
 
     public function competitor()
@@ -25,5 +26,16 @@ class Score extends Model
     public function formatted()
     {
         return $this->workout->formatScore($this->amount);
+    }
+
+    public function tableClassAttribute() 
+    {
+        if ($this->validity == "valid") {
+            return "table-success";
+        }
+        if ($this->validity == "invalid") {
+            return "table-danger";
+        }
+        return "";
     }
 }

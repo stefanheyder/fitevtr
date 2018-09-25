@@ -12,9 +12,6 @@ class CompetitorSeeder extends Seeder
      */
     public function run()
     {
-        Competitor::create(['name' => 'David Zilles', 'gender' => 'male']);
-        Competitor::create(['name' => 'Saskia Widdison', 'gender' => 'female']);
-        Competitor::create(['name' => 'Kim Frerichs', 'gender' => 'female']);
-        Competitor::create(['name' => 'Jan-Cedric Vogt', 'gender' => 'male']);
+        factory(App\Competitor::class, 10)->create();
     }
 }
