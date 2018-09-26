@@ -5,7 +5,7 @@
            data-mobile-responsive="true"
            data-check-on-init="true"
            data-sort-name="id"
-           data-sort-order="desc"
+           data-sort-order="asc"
     >
         <thead class="table">
             <tr>
@@ -26,7 +26,7 @@
                         </a>
                     </td>
                     <td>
-                        {{ $flight->competitors->implode('name', '<br>') }}
+                        {!! $flight->competitors->implode('name', '<br>') !!}
                     </td>
                 </tr>
             @endforeach
