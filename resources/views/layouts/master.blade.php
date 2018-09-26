@@ -40,6 +40,10 @@
             </div>
         @endauth
         </footer>
+        <script>
+            var timestamp = "{{ Illuminate\Support\Carbon::now() }}";
+        </script>
         <script src="{{mix('js/app.js')}}"></script>
+        
     </body>
 </html>

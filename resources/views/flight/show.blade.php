@@ -18,14 +18,14 @@
             </tr>
             <tr>
                 @foreach(App\Workout::all() as $workout)
-                    <th> 1. Versuch </th>
-                    <th> 2. Versuch </th>
-                    <th> 3. Versuch </th>
+                    <th data-sortable="true"> 1. Versuch </th>
+                    <th data-sortable="true"> 2. Versuch </th>
+                    <th data-sortable="true"> 3. Versuch </th>
                 @endforeach
             </tr>
         </thead>
         <tbody>
-            @foreach(App\Competitor::all() as $competitor)
+            @foreach($flight->competitors as $competitor)
                 <tr>
                     <td>
                         <a href="/competitor/{{$competitor->id}}" class="name-fat">
