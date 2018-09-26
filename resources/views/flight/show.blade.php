@@ -4,36 +4,38 @@
     <table data-toggle="table"
            data-mobile-responsive="true"
            data-check-on-init="true"
-           data-sort-name="wilks"
-           data-sort-order="desc"
     >
         <thead class="table">
             <tr>
-                <th rowspan="2" data-field="name"> <span class="not-in-card"> Name (Gewicht) </span></th>
+                <th rowspan="2" data-field="name"> <span class="not-in-card"> Name </span></th>
+                <th rowspan="2" data-field="weight"> <span class="not-in-card"> Gewicht  </span></th>
                 @foreach(App\Workout::all() as $workout)
                     <th scope="col" colspan="3"> {{ $workout->name }} </th>
                 @endforeach
-                <th rowspan="2" data-sortable="true" data-field="total">Total</th>
-                <th rowspan="2" data-sortable="true" data-field="wilks">Wilks</th>
+                <th rowspan="2" data-field="total">Total</th>
+                <th rowspan="2" data-field="wilks">Wilks</th>
             </tr>
             <tr>
                 @foreach(App\Workout::all() as $workout)
-                    <th data-sortable="true"> 1. Versuch </th>
-                    <th data-sortable="true"> 2. Versuch </th>
-                    <th data-sortable="true"> 3. Versuch </th>
+                    <th> 1. Versuch </th>
+                    <th> 2. Versuch </th>
+                    <th> 3. Versuch </th>
                 @endforeach
             </tr>
         </thead>
         <tbody>
-            @foreach($flight->competitors as $competitor)
-                <tr>
+            @foreach($orderedCompetitors as $competitor)
+                <tr class="{{$competitor->is($currentCompetitor) ? "current-lifter" : "" }}">
                     <td>
                         <a href="/competitor/{{$competitor->id}}" class="name-fat">
-                            {{ $competitor->name }} ({{ number_format($competitor->weight, 1)}} )
+                            {{ $competitor->name }}
                         </a>
                     </td>
+                    <td>
+                        {{ number_format($competitor->weight, 1)}} 
+                    </td>
                     @foreach(App\Workout::all() as $workout)
-                        @foreach($competitor->powerlifitingScores($workout) as $score)
+                        @foreach($competitor->powerliftingScores($workout) as $score)
                             <td class="{{ $score->tableClassAttribute()}}"> {{ $score->amount }} </td>
                         @endforeach
                     @endforeach
@@ -43,4 +45,20 @@
             @endforeach
         </tbody>
     </table>
-@stop
+@endsection
+
+@section('extraJS')
+    <script>
+        window.setInterval(function() {
+    axios.get('/api/shouldUpdate', {
+        params: {
+            lastUpdate: timestamp
+        }
+    }).then(function(response) {
+        if (response.data.update) {
+            location.reload(true);
+        }
+    });
+    }, 5000)
+    </script>
+@endsection

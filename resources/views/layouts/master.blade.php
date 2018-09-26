@@ -44,6 +44,7 @@
             var timestamp = "{{ Illuminate\Support\Carbon::now() }}";
         </script>
         <script src="{{mix('js/app.js')}}"></script>
+        @yield('extraJS')
         
     </body>
 </html>

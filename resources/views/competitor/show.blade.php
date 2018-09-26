@@ -21,17 +21,9 @@
             @endauth
             @foreach($competitor->scoresInWorkout($workout)->get() as $score)
                 <div class="list-group-item">
-                {!! Form::open(['action' => ['ScoreController@destroy', $score->id], 'method' => 'DELETE', 'name' => 'post_' . md5($score->id . $score->created_at)]) !!}
-                    {{ $score->formatted() }}
-                    @auth
-                        <a 
-                            class="fa fa-remove" 
-                            href="javascript:void(0)" 
-                            title="delete" onclick="if (confirm('Löschen?')) { document.post_<?= md5($score->id . $score->created_at) ?>.submit(); } event.returnValue = false; return false;"
-                        >
-                        </a>
-                    @endauth
-                {!! Form::close() !!}
+                    <a href="/score/{{$score->id}}/edit">
+                        {{ $score->formatted() }}
+                    </a>
                 </div>
             @endforeach
         </div>

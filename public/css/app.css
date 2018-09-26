@@ -13841,3 +13841,26 @@ a.text-dark:focus {
   color: red;
 }
 
+.current-lifter {
+  border: 3px solid #FFEA58;
+  border-radius: 5px;
+}
+
+.blink {
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+          animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    border: 0px;
+    border-radius: 0px;
+  }
+}
+
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+

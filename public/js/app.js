@@ -13971,15 +13971,6 @@ setTimer = function setTimer(totalSeconds) {
     document.getElementById('amountAsTime').value = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 };
 
-axios.get('/api/shouldUpdate', {
-    params: {
-        lastUpdate: timestamp
-    }
-}).then(function (response) {
-    console.log('Should update: ');
-    console.log(response);
-});
-
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {

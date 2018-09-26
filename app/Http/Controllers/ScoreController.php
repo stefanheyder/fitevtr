@@ -8,6 +8,7 @@ use App\Workout;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
 
 class ScoreController extends Controller
 {
@@ -44,12 +45,11 @@ class ScoreController extends Controller
         $workout = Workout::find($request->get('workout_id'));
         $isFemale = $competitor->gender == 'female';
 
-        $multiplicand = $isFemale && $workout->type == '1RM' ? 1.8 : 1;
 
         Score::create([
             'workout_id' => $request->get('workout_id'),
             'competitor_id' => $request->get('competitor_id'),
-            'amount' => $multiplicand * $request->get('amount')
+            'amount' => $request->get('amount')
         ]);
 
         return Redirect::back()->withInput($request->all());
@@ -74,7 +74,8 @@ class ScoreController extends Controller
      */
     public function edit(Score $score)
     {
-        //
+        return View::make('score/edit')
+            ->with('score', $score);
     }
 
     /**
@@ -86,7 +87,9 @@ class ScoreController extends Controller
      */
     public function update(Request $request, Score $score)
     {
-        //
+        $score->fill($request->all());
+        $score->save();
+        return Redirect::back();
     }
 
     /**

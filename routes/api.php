@@ -27,6 +27,6 @@ Route::get('shouldUpdate', function() {
     $max = $comp->max($score);
 
     $wasThereAnUpdate = $max->gt(request()->lastUpdate);
-
-    return response()->json(['update' => true]);
+    
+    return response()->json(['update' => $wasThereAnUpdate]);
 });

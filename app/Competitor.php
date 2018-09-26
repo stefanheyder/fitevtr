@@ -61,7 +61,7 @@ class Competitor extends Model
         })->sum();
     }
 
-    public function powerlifitingScores(Workout $workout) 
+    public function powerliftingScores(Workout $workout) 
     {
         return $this->scoresInWorkout($workout)
                        ->get()

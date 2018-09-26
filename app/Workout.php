@@ -61,4 +61,13 @@ class Workout extends Model
         return $amount;
     }
 
+    public function powerliftingScores($flight)
+    {
+        return $flight
+            ->competitors
+            ->map(function($competitor) {
+                return $competitor->powerliftingScores($this);
+            });
+    }
+
 }
