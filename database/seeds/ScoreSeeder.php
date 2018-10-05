@@ -16,10 +16,10 @@ class ScoreSeeder extends Seeder
     {
         foreach(Competitor::all() as $c) {
             $w = Workout::first();
-            factory(App\Score::class, 1)->create([
+            factory(App\Score::class, 3)->create([
                 'competitor_id' => $c->id,
                 'workout_id' => $w->id,
-                'validity' => 'undecided'
+                'validity' => 'valid'
             ]);
         }
     }

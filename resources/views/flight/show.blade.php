@@ -12,8 +12,8 @@
                 @foreach(App\Workout::all() as $workout)
                     <th scope="col" colspan="3"> {{ $workout->name }} </th>
                 @endforeach
-                <th rowspan="2" data-field="total">Total</th>
-                <th rowspan="2" data-field="wilks">Wilks</th>
+                <th rowspan="2" data-field="total" data-sortable="true">Total</th>
+                <th rowspan="2" data-field="wilks" data-sortable="true">Wilks</th>
             </tr>
             <tr>
                 @foreach(App\Workout::all() as $workout)
@@ -36,7 +36,7 @@
                     </td>
                     @foreach(App\Workout::all() as $workout)
                         @foreach($competitor->powerliftingScores($workout) as $score)
-                            <td class="{{ $score->tableClassAttribute()}}"> {{ $score->amount }} </td>
+                            <td class="{{ $score->tableClassAttribute()}}"> {{ number_format($score->amount, 2) }} </td>
                         @endforeach
                     @endforeach
                     <td>{{ number_format($competitor->powerliftingTotal(), 2) }}</td>
