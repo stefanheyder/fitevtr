@@ -24,7 +24,13 @@ class CreateFlightsTable extends Migration
             $table->integer('competitor_id')->references('id')->on('competitors');
             $table->integer('flight_id')->references('id')->on('flights');
             $table->timestamps();
+        });
 
+        Schema::create('flight_workout', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('workout_id')->references('id')->on('workout');
+            $table->integer('flight_id')->references('id')->on('flights');
+            $table->timestamps();
         });
     }
 
@@ -37,5 +43,6 @@ class CreateFlightsTable extends Migration
     {
         Schema::dropIfExists('flights');
         Schema::dropIfExists('competitor_flight');
+        Schema::dropIfExists('flight_workout');
     }
 }

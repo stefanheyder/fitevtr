@@ -12,6 +12,7 @@
                 <th data-field="id"> # </th>
                 <th data-field="title"> Titel </th>
                 <th> Heber </th>
+                <th> Lifts </th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,9 @@
                     </td>
                     <td>
                         {!! $flight->competitors->implode('name', '<br>') !!}
+                    </td>
+                    <td>
+                        {!! $flight->workouts->implode('name', '<br>') !!}
                     </td>
                 </tr>
             @endforeach

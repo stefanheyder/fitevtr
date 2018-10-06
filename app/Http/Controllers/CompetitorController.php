@@ -100,4 +100,5 @@ class CompetitorController extends Controller
         $competitor->delete();
         return Redirect::back();
     }
+
 }

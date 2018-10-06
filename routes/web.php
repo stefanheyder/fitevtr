@@ -27,8 +27,8 @@ Route::post('logout', 'Auth\LoginController@logout')
     ->name('logout')
     ->middleware('auth');
 
-Route::Redirect('/', 'competitor');
-
 Route::resource('flight', 'FlightController');
 
+Route::view('powerlifting', 'competitor/powerliftingOverview');
 
+Route::view('/', 'dashboard');

@@ -20,7 +20,8 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "bootstrap-table": "^1.12.1",
-        "font-awesome": "^4.7.0"
+        "@fortawesome/fontawesome-free": "^5.3.1",
+        "bootstrap-select": "^1.13.2",
+        "bootstrap-table": "^1.12.1"
     }
 }

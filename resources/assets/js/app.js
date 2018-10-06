@@ -13,6 +13,8 @@ require('bootstrap-table');
 require('bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.js');
 require('bootstrap-table/dist/extensions/natural-sorting/bootstrap-table-natural-sorting');
 
+require('bootstrap-select');
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

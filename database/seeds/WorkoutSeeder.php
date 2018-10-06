@@ -14,15 +14,19 @@ class WorkoutSeeder extends Seeder
     {
         $workouts = [
             [ 
-                'name' => 'Squat', 
+                'name' => 'Kniebeuge', 
                 'type' => '1RM'
             ],
             [ 
-                'name' => 'Bench Press', 
+                'name' => 'Bankdrücken', 
                 'type' => '1RM'
             ],
             [ 
-                'name' => 'Deadlift', 
+                'name' => 'Kniebeuge (EQ)', 
+                'type' => '1RM'
+            ],
+            [ 
+                'name' => 'Bankdrücken (EQ)', 
                 'type' => '1RM'
             ]
         ];

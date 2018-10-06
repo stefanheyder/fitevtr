@@ -8,6 +8,6 @@
     {{ Form::submit('Logout', ['class' => 'btn btn-warning']) }}
     {{ Form::close() }}
     <a href="{{route('competitor.create')}}" class="btn btn-success">
-        <i class="fa fa-user"></i>
+        <i class="fas fa-user"></i>
     </a>
 </div>

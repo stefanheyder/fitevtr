@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\View;
 
 use App\Flight;
@@ -61,4 +60,49 @@ class FlightController extends Controller
             ->with('orderedCompetitors', $orderedCompetitors);
     }
 
+    public function edit(Flight $flight) 
+    {
+        return View::make('flight/edit')
+            ->with('flight', $flight);
+    }
+
+    public function update(Request $request, Flight $flight)
+    {
+
+        $flight->competitors()->sync($request->competitors);
+        $flight->workouts()->sync($request->workouts);
+
+        $flight->save();
+
+        return back();
+    }
+
+    public function create()
+    {
+        return View::make('flight/create');
+    }
+
+    public function store(Request $request)
+    {
+        $flight = new Flight();
+
+        $flight->title = $request->title;
+        $flight->save();
+        $flight->competitors()->sync($request->competitors);
+        $flight->workouts()->sync($request->workouts);
+
+        $flight->save();
+        return redirect(route('flight.show', $flight));
+    }
+
+    public function destroy(Flight $flight) 
+    {
+        $flight->competitors()->detach();
+        $flight->workouts()->detach();
+        $flight->save();
+
+        $flight->delete();
+
+        return redirect('/');
+    }
 }

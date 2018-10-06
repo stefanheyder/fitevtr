@@ -52,7 +52,7 @@ class Workout extends Model
     public function formatScore($amount)
     {
         if (is_null($amount) ) {
-            return "";
+            return 0;
         }
         if ($this->isForTime()) {
             return gmdate("i:s", $amount);

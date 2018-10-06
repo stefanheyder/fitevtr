@@ -46,9 +46,9 @@ class Competitor extends Model
         })->sum();
     }
 
-    public function powerliftingTotal()
+    public function powerliftingTotal(Flight $flight)
     {
-        $workouts = Workout::query()->where('type', '1RM')->get();
+        $workouts = $flight->workouts;
 
         return $workouts->map(function ($w) {
             $validScores = $this->scoresInWorkout($w)->where('validity', 'valid')->get();
@@ -68,5 +68,10 @@ class Competitor extends Model
                        ->take(3)
                        ->pad(3, new Score(['amount' => 0, 'validity' => 'undecided']));
 
+    }
+
+    public function flight() 
+    {
+        return $this->belongsToMany('App\Flight')->first();
     }
 }

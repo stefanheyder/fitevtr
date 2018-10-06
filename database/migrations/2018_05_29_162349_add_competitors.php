@@ -18,7 +18,7 @@ class AddCompetitors extends Migration
             $table->increments('id');
             $table->string('name');
             $table->enum('gender', ['male', 'female']);
-            $table->double('weight');
+            $table->double('weight')->default(0);
             $table->timestamps();
         });
     }

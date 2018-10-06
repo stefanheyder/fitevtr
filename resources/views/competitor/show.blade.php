@@ -6,7 +6,10 @@
 
 @section('content')
     <h2>
-        Übersicht für {{ $competitor->name }}
+        Übersicht für {{ $competitor->name }} 
+        <a href="{{route('competitor.edit', $competitor)}}" class="fas fa-pencil-alt">
+        <a href="{{route('competitor.destroy', $competitor)}}" class="fas fa-user-minus">
+        </a>
     </h2>
     @foreach(App\Workout::all() as $workout)
         <div class="list-group">

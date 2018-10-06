@@ -1,6 +1,9 @@
 <?php
 namespace App;
 
+use App\Competitor;
+use App\Flight;
+
 class Scoring
 {
     const maxPoints = 100;
@@ -72,11 +75,11 @@ class Scoring
         return $allPoints->firstWhere('competitor.id', $competitor->id)['points'];
     }
 
-    public static function wilksPoints($competitor)
+    public static function wilksPoints(Competitor $competitor, Flight $flight)
     {
         $wilks_coefficient = self::wilksCoeff($competitor->weight, $competitor->gender);
     
-        return $competitor->powerliftingTotal() * $wilks_coefficient;
+        return $competitor->powerliftingTotal($flight) * $wilks_coefficient;
     }
 
     public static function wilksCoeff($weight, $gender) 

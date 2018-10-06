@@ -7,10 +7,13 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-select/dist/css/bootstrap-select.css';
 
 @import '~bootstrap-table/dist/bootstrap-table.css';
 
-@import '~font-awesome/scss/font-awesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
 
 .navbar-laravel {
   background-color: #fff;
@@ -86,4 +89,16 @@
   to {
     visibility: hidden;
   }
+}
+
+table {
+    font-size: 20pt;
+}
+
+table {
+    text-transform: uppercase;
+}
+
+td > a {
+    color: black;
 }

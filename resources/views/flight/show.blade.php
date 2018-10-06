@@ -4,28 +4,31 @@
     <table data-toggle="table"
            data-mobile-responsive="true"
            data-check-on-init="true"
+           data-sort-name="wilks"
+           data-sort-order="desc"
+           data-show-columns="true"
     >
         <thead class="table">
             <tr>
                 <th rowspan="2" data-field="name"> <span class="not-in-card"> Name </span></th>
                 <th rowspan="2" data-field="weight"> <span class="not-in-card"> Gewicht  </span></th>
-                @foreach(App\Workout::all() as $workout)
-                    <th scope="col" colspan="3"> {{ $workout->name }} </th>
+                @foreach($flight->workouts as $workout)
+                    <th colspan="3"> {{ $workout->name }} </th>
                 @endforeach
                 <th rowspan="2" data-field="total" data-sortable="true">Total</th>
                 <th rowspan="2" data-field="wilks" data-sortable="true">Wilks</th>
             </tr>
             <tr>
-                @foreach(App\Workout::all() as $workout)
-                    <th> 1. Versuch </th>
-                    <th> 2. Versuch </th>
-                    <th> 3. Versuch </th>
+                @foreach($flight->workouts as $workout)
+                    <th> 1. </th>
+                    <th> 2. </th>
+                    <th> 3. </th>
                 @endforeach
             </tr>
         </thead>
         <tbody>
             @foreach($orderedCompetitors as $competitor)
-                <tr class="{{$competitor->is($currentCompetitor) ? "current-lifter" : "" }}">
+                <tr class="{{$competitor->is($currentCompetitor) ? "" : "" }}">
                     <td>
                         <a href="/competitor/{{$competitor->id}}" class="name-fat">
                             {{ $competitor->name }}
@@ -34,13 +37,13 @@
                     <td>
                         {{ number_format($competitor->weight, 1)}} 
                     </td>
-                    @foreach(App\Workout::all() as $workout)
+                    @foreach($flight->workouts as $workout)
                         @foreach($competitor->powerliftingScores($workout) as $score)
                             <td class="{{ $score->tableClassAttribute()}}"> {{ number_format($score->amount, 2) }} </td>
                         @endforeach
                     @endforeach
-                    <td>{{ number_format($competitor->powerliftingTotal(), 2) }}</td>
-                    <td>{{ number_format(App\Scoring::wilksPoints($competitor), 2)}}</td>
+                    <td>{{ number_format($competitor->powerliftingTotal($flight), 2) }}</td>
+                    <td>{{ number_format(App\Scoring::wilksPoints($competitor, $flight), 2)}}</td>
                 </tr>
             @endforeach
         </tbody>
