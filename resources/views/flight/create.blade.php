@@ -26,7 +26,7 @@
         <select name="competitors[]" id="competitors" multiple  class="selectpicker form-control" data-live-search="true" data-actions-box="true" data-divider="true">
             @foreach(App\Competitor::all() as $competitor) 
                 <option value="{{$competitor->id}}">
-                {{ $competitor->name }}
+                {{ $competitor->name }} ( {{ $competitor->gender }} )
                 </option>
             @endforeach
         </select>

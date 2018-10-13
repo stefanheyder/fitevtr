@@ -50,7 +50,7 @@ class CompetitorController extends Controller
             return Redirect::back();
         }
         $c = Competitor::create($request->all());
-        return Redirect::to('competitor/' . $c->id);
+        return Redirect::to('/');
     }
 
     /**
@@ -86,7 +86,7 @@ class CompetitorController extends Controller
     {
         $competitor->fill($request->all());
         $competitor->save();
-        return Redirect::back();
+        return Redirect::to('/');
     }
 
     /**

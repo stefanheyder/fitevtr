@@ -52,7 +52,7 @@ class ScoreController extends Controller
             'amount' => $request->get('amount')
         ]);
 
-        return Redirect::back()->withInput($request->all());
+        return Redirect::to('/powerlifting');
     }
 
     /**
@@ -89,7 +89,7 @@ class ScoreController extends Controller
     {
         $score->fill($request->all());
         $score->save();
-        return Redirect::back();
+        return Redirect::to('judge/workout/'. $score->workout_id . '/competitor/' . $score->competitor_id);
     }
 
     /**

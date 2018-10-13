@@ -4,6 +4,7 @@
     <table data-toggle="table"
            data-sort-name="wilks"
            data-sort-order="desc"
+           data-search="true"
     >
         <thead class="table">
             <tr>

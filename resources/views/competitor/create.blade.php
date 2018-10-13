@@ -11,7 +11,7 @@
     </select>
     <div class="form-group">
         <label for="weight">Gewicht</label>
-        <input type="number" min="0" max="300" step="0.1" class="form-control" id="weight" aria-describedby="weight" placeholder="Gewicht" name="weight">
+        <input type="number" min="0" max="300" step="0.01" class="form-control" id="weight" aria-describedby="weight" placeholder="Gewicht" name="weight">
     </div>
     <button type="submit" class="btn btn-big btn-success col">Submit</button>
     {{ Form::close() }}

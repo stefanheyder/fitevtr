@@ -35,7 +35,7 @@
                         </a>
                     </td>
                     <td>
-                        {{ number_format($competitor->weight, 1)}} 
+                        {{ number_format($competitor->weight, 2)}} 
                     </td>
                     @foreach($flight->workouts as $workout)
                         @foreach($competitor->powerliftingScores($workout) as $score)

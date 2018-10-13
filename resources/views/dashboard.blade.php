@@ -37,7 +37,7 @@
         </div>
         <div class="panel-body">
             <ul class="list-group">
-                @foreach(App\Competitor::all() as $competitor) 
+                @foreach(App\Competitor::orderBy('name')->get() as $competitor) 
                     <li class="list-group-item">
                         <a href={{route('competitor.show', $competitor)}}>
                             {{$competitor->name}}
