@@ -13872,8 +13872,9 @@ module.exports = __webpack_require__(43);
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13882,6 +13883,7 @@ module.exports = __webpack_require__(43);
  */
 
 __webpack_require__(13);
+__webpack_require__(61);
 
 window.Vue = __webpack_require__(36);
 
@@ -13965,12 +13967,25 @@ window.startTimer = function () {
     }
 };
 
-setTimer = function setTimer(totalSeconds) {
+var setTimer = function setTimer(totalSeconds) {
 
     seconds = totalSeconds % 60;
     minutes = Math.floor(totalSeconds / 60);
 
     document.getElementById('amountAsTime').value = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+};
+
+window.changeScoreValidity = function (id, validity) {
+    if (id) {
+        console.log(validity);
+        axios.post('/api/score/' + id, {
+
+            validity: validity,
+            _method: 'put'
+        }).then(function (response) {
+            console.log(response);
+        });
+    }
 };
 
 /***/ }),
@@ -53489,6 +53504,30 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */
+/***/ (function(module, __webpack_exports__) {
+
+"use strict";
+
 
 /***/ })
 /******/ ]);

@@ -30,3 +30,5 @@ Route::get('shouldUpdate', function() {
     
     return response()->json(['update' => $wasThereAnUpdate]);
 });
+
+Route::resource('score', 'Api\ScoreController', ['as' => 'api']);

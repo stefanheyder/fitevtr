@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./score.js');
 
 window.Vue = require('vue');
 
@@ -83,11 +84,25 @@ window.startTimer = (up = true, start = null, setAmount = true) => {
     }
 };
 
-setTimer = (totalSeconds) => {
+let setTimer = (totalSeconds) => {
     
     seconds = totalSeconds % 60;
     minutes = Math.floor(totalSeconds / 60);
 
     document.getElementById('amountAsTime').value = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+};
+
+window.changeScoreValidity = function(id, validity) {
+    if (id) {
+        console.log(validity);
+        axios.post('/api/score/' + id, {
+
+            validity: validity,
+            _method: 'put'
+        })
+            .then(function(response) {
+                console.log(response);
+            });
+    }
 };
 

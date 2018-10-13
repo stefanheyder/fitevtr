@@ -66,7 +66,12 @@ class Competitor extends Model
         return $this->scoresInWorkout($workout)
                        ->get()
                        ->take(3)
-                       ->pad(3, new Score(['amount' => 0, 'validity' => 'undecided']));
+                       ->pad(3, new Score([
+                               'amount' => 0,
+                               'validity' => 'undecided',
+                               'competitor_id' => $this->id,
+                               'workout_id' => $workout->id
+                           ]));
 
     }
 

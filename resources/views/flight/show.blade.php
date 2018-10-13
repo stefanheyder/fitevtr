@@ -39,7 +39,9 @@
                     </td>
                     @foreach($flight->workouts as $workout)
                         @foreach($competitor->powerliftingScores($workout) as $score)
-                            <td class="{{ $score->tableClassAttribute()}}"> {{ number_format($score->amount, 2) }} </td>
+                            <td class="{{ $score->tableClassAttribute()}}"> 
+                                @include('lift.editmodal', ['lift' => $score])
+                            </td>
                         @endforeach
                     @endforeach
                     <td>{{ number_format($competitor->powerliftingTotal($flight), 2) }}</td>
