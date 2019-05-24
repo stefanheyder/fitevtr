@@ -55,4 +55,8 @@
             </ul>
         </div>
     </div>
+    <div>
+        
+    <modal></modal>
+    </div>
 @stop

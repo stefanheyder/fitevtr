@@ -38,6 +38,13 @@ Vue.component('score-increment', {
     props: ['increment']
 });
 
+Vue.component('score-increment', {
+    data: () => store,
+    template: '<button v-on:click="score = Number(score) + Number(increment)"> + {{ increment }} </button>',
+    props: ['increment']
+});
+
+Vue.component('modal', require('./components/modal.vue'));
 const app = new Vue({
     el: '#app'
 });
