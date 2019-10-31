@@ -32,3 +32,6 @@ Route::resource('flight', 'FlightController');
 Route::view('powerlifting', 'competitor/powerliftingOverview');
 
 Route::view('/', 'dashboard');
+
+
+Route::resource('competition', 'CompetitionController');

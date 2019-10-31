@@ -16,6 +16,19 @@ require('bootstrap-table/dist/extensions/natural-sorting/bootstrap-table-natural
 
 require('bootstrap-select');
 
+$(function(){
+    $("[data-toggle=popover]").popover({
+        html : true,
+        content: function() {
+          var content = $(this).attr("data-popover-content");
+          return $(content).children(".popover-body").html();
+        },
+        title: function() {
+          var title = $(this).attr("data-popover-content");
+          return $(title).children(".popover-heading").html();
+        }
+    });
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -92,7 +105,7 @@ window.startTimer = (up = true, start = null, setAmount = true) => {
 };
 
 let setTimer = (totalSeconds) => {
-    
+
     seconds = totalSeconds % 60;
     minutes = Math.floor(totalSeconds / 60);
 

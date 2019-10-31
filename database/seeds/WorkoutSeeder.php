@@ -13,20 +13,12 @@ class WorkoutSeeder extends Seeder
     public function run()
     {
         $workouts = [
-            [ 
-                'name' => 'Kniebeuge', 
+            [
+                'name' => 'Reißen',
                 'type' => '1RM'
             ],
-            [ 
-                'name' => 'Bankdrücken', 
-                'type' => '1RM'
-            ],
-            [ 
-                'name' => 'Kniebeuge (EQ)', 
-                'type' => '1RM'
-            ],
-            [ 
-                'name' => 'Bankdrücken (EQ)', 
+            [
+                'name' => 'Stoßen',
                 'type' => '1RM'
             ]
         ];

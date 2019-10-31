@@ -27,6 +27,17 @@ class Scoring
         ]
     ];
 
+    const sinclair_constants = [
+        "male" => [
+            "A" => 0.751945030,
+            "b" => 175.508
+        ],
+        "female" => [
+            "A" => 0.783497476,
+            "b" => 153.655
+        ]
+    ];
+
     public static function points(Workout $workout)
     {
         $competitors = $workout->competitors()
@@ -41,7 +52,7 @@ class Scoring
         if ($amountOfCompetitors == 0) {
             return collect([]);
         }
-        
+
         $differenceBetweenTwoPlaces = intval(floor(self::maxPoints / $competitors->count()));
 
         $scoresWithPoints = $competitors->map(function($item) use ($differenceBetweenTwoPlaces, $competitors) {
@@ -78,11 +89,11 @@ class Scoring
     public static function wilksPoints(Competitor $competitor, Flight $flight)
     {
         $wilks_coefficient = self::wilksCoeff($competitor->weight, $competitor->gender);
-    
+
         return $competitor->powerliftingTotal($flight) * $wilks_coefficient;
     }
 
-    public static function wilksCoeff($weight, $gender) 
+    public static function wilksCoeff($weight, $gender)
     {
         $w = $weight;
 
@@ -97,5 +108,21 @@ class Scoring
 
         return 500 / $poly;
     }
+
+    public static function sinclairPoints(Competitor $competitor, Flight $flight)
+    {
+        $sinclair_coefficient = self::sinclairCoeff($competitor->weight, $competitor->gender);
+
+        return $competitor->powerliftingTotal($flight) * $sinclair_coefficient;
+    }
+
+    public static function sinclairCoeff($weight, $gender)
+    {
+        $A = self::sinclair_constants[$gender]["A"];
+        $b = self::sinclair_constants[$gender]["b"];
+
+        return pow(10, $A * pow((log(min($weight / $b, 1), 10)), 2));
+    }
+
 }
 

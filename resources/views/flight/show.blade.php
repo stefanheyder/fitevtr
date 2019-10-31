@@ -11,12 +11,9 @@
         <thead class="table">
             <tr>
                 <th rowspan="2" data-field="name"> <span class="not-in-card"> Name </span></th>
-                <th rowspan="2" data-field="weight"> <span class="not-in-card"> Gewicht  </span></th>
                 @foreach($flight->workouts as $workout)
                     <th colspan="3"> {{ $workout->name }} </th>
                 @endforeach
-                <th rowspan="2" data-field="total" data-sortable="true">Total</th>
-                <th rowspan="2" data-field="wilks" data-sortable="true">Wilks</th>
             </tr>
             <tr>
                 @foreach($flight->workouts as $workout)
@@ -34,18 +31,13 @@
                             {{ $competitor->name }}
                         </a>
                     </td>
-                    <td>
-                        {{ number_format($competitor->weight, 2)}} 
-                    </td>
                     @foreach($flight->workouts as $workout)
                         @foreach($competitor->powerliftingScores($workout) as $score)
-                            <td class="{{ $score->tableClassAttribute()}}"> 
+                            <td class="{{ $score->tableClassAttribute()}}">
                                 @include('lift.editmodal', ['lift' => $score])
                             </td>
                         @endforeach
                     @endforeach
-                    <td>{{ number_format($competitor->powerliftingTotal($flight), 2) }}</td>
-                    <td>{{ number_format(App\Scoring::wilksPoints($competitor, $flight), 2)}}</td>
                 </tr>
             @endforeach
         </tbody>

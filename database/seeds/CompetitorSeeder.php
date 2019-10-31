@@ -14,46 +14,23 @@ class CompetitorSeeder extends Seeder
      */
     public function run()
     {
-
         $competitors = [
-            ["name" => "Dirck Wetzel", "gender" => "male"],
-            ["name" => "Leonid Hanez", "gender" => "male"],
-            ["name" => "Alexander Matsch", "gender" => "male"],
-            ["name" => "Bernd Beyer", "gender" => "male"],
-            ["name" => "Uwe  Billig", "gender" => "male"],
-            ["name" => "Tobias Zinserling", "gender" => "male"],
-            ["name" => "Jens Wagner", "gender" => "male"],
-            ["name" => "Caroline Kupfer", "gender" => "female"],
-            ["name" => "Ramon Baubel", "gender" => "male"],
-            ["name" => "Christopher Großkurth", "gender" => "male"],
-            ["name" => "Carola Herzog", "gender" => "female"],
-            ["name" => "Nadin Elfenbein", "gender" => "female"],
-            ["name" => "Malte Siefarth", "gender" => "male"],
-            ["name" => "Christina Büller", "gender" => "female"],
-            ["name" => "Sebastian Semper", "gender" => "male"],
-            ["name" => "Constantin  Ritzmann", "gender" => "male"],
-            ["name" => "Marcus Siegmund ", "gender" => "male"],
-            ["name" => "Fernando Hillebrand", "gender" => "male"],
-            ["name" => "Kim Frerichs", "gender" => "female"],
-            ["name" => "Steffen Koch", "gender" => "male"],
-            ["name" => "Anne Schmidt", "gender" => "female"],
-            ["name" => "Patric Gregor", "gender" => "male"],
-            ["name" => "Lucas Weidich", "gender" => "male"],
-            ["name" => "Jose Ivan Gonzales Abad", "gender" => "male"],
-            ["name" => "Lukas Weidich", "gender" => "male"],
-            ["name" => "Paul Schleicher", "gender" => "male"],
-            ["name" => "Markus Hake", "gender" => "male"],
-            ["name" => "Oliver Berger", "gender" => "male"],
-            ["name" => "Ronny Kreitl", "gender" => "male"],
-            ["name" => "Mathias Keimling", "gender" => "male"],
-            ["name" => "Christian  Wolf", "gender" => "male"],
-            ["name" => "Benjamin Heidebrunn", "gender" => "male"],
-            ["name" => "Christoph  Koch", "gender" => "male"],
-            ["name" => "Alexander Jung", "gender" => "male"],
-            ["name" => "Patrick Wirth", "gender" => "male"],
-            ["name" => "Felix Blaurock", "gender" => "male"],
-            ["name" => "Tina Asmus", "gender" => "female"],
-            ["name" => "Marco Schülke", "gender" => "male"]
+            # Schwarza
+            ["name" => "Alexander Meinhardt-Heib", "gender" => "male", "weight" => 101.2],
+            ["name" => "Lisa Möller", "gender" => "female", "weight" => 73.7],
+            ["name" => "Max Nessen", "gender" => "male", "weight" => 75.3],
+            ["name" => "Jakob Nikolaschin", "gender" => "male", "weight" => 94.2],
+            # AK Schwaza
+            ["name" => "Saskia Brummer", "gender" => "female", "weight" => 65.1],
+            ["name" => "Heide Schubert", "gender" => "female", "weight" => 63.5],
+            # GFR
+            ["name" => "Richard Hendrich", "gender" => "male", "weight" => 116],
+            ["name" => "Nico Holtmann", "gender" => "male", "weight" => 77],
+            ["name" => "Sebastian Semper", "gender" => "male", "weight" => 91.9],
+            ["name" => "Philipp Schreck", "gender" => "male", "weight" => 93.8],
+            # AK GFR
+            ["name" => "Diana Kurbanova", "gender" => "female", "weight" => 68.1],
+            ["name" => "Raphael Kleinfeldt", "gender" => "male", "weight" => 66.6]
         ];
 
         foreach($competitors as $competitor) {
@@ -61,15 +38,11 @@ class CompetitorSeeder extends Seeder
         }
 
         $flightNames = [
-            ["title" => "All"],
-            ["title" => "Flight 1A"],
-            ["title" => "Flight 1B"],
-            ["title" => "Flight 2A"],
-            ["title" => "Flight 2B"],
-            ["title" => "Squat (RAW + EQ)"],
-            ["title" => "Bench (RAW + EQ)"],
-            ["title" => "RAW"],
-            ["title" => "EQ"]
+            ["title" => "Alle Heber"],
+            ["title" => "SV Schwarza"],
+            ["title" => "SV Schwarza a.K."],
+            ["title" => "SV 90 Gräfenroda"],
+            ["title" => "SV 90 Gräfenroda a.K."]
         ];
 
         foreach($flightNames as $flight) {

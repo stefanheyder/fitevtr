@@ -9,7 +9,7 @@
         <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div id="app" class="container-fluid" background-color="white">
+        <div id="app" class="container" background-color="white">
             @yield('content')
         </div>
         <script>
@@ -17,6 +17,6 @@
         </script>
         <script src="{{mix('js/app.js')}}"></script>
         @yield('extraJS')
-        
+
     </body>
 </html>
