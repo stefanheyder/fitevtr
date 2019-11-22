@@ -47,12 +47,13 @@ class ScoreController extends Controller
 
 
         Score::create([
+            'competition_id' => 1,
             'workout_id' => $request->get('workout_id'),
             'competitor_id' => $request->get('competitor_id'),
             'amount' => $request->get('amount')
         ]);
 
-        return Redirect::to('/powerlifting');
+        return Redirect::back();
     }
 
     /**
@@ -89,7 +90,7 @@ class ScoreController extends Controller
     {
         $score->fill($request->all());
         $score->save();
-        return Redirect::to('judge/workout/'. $score->workout_id . '/competitor/' . $score->competitor_id);
+        return Redirect::back();
     }
 
     /**

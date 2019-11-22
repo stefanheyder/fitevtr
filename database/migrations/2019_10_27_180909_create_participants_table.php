@@ -22,6 +22,7 @@ class CreateParticipantsTable extends Migration
         Schema::create('participant_competitor', function(Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->boolean('noncompetetive');
 
             $table->integer('competitor_id')->references('id')->on('competitors');
             $table->integer('participant_id')->references('id')->on('participants');

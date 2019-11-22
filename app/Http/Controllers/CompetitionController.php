@@ -48,7 +48,8 @@ class CompetitionController extends Controller
      */
     public function show(Competition $competition)
     {
-        return View::make('competition/show');
+        $participants = $competition->teams();
+        return View::make('competition/current_standings_viewers', compact(['competition', 'participants']));
     }
 
     /**

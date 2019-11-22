@@ -4,12 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Team;
+
 class Competitor extends Model
 {
     protected $fillable = [
         'name',
-        'gender',
-        'weight'
+        'gender'
     ];
 
     public function scores()
@@ -29,7 +30,13 @@ class Competitor extends Model
 
     public function bestScore(Workout $workout)
     {
-        return $this->scoresInWorkout($workout)->orderBy('amount', $workout->sortOrder())->first()['amount'];
+        return $this
+            ->scoresInWorkout($workout)
+            ->where('validity', 'valid')
+            ->orderBy('amount', $workout->sortOrder())
+            ->get()
+            ->whenEmpty(function($c) {return $c->push(['amount' => 0]);})
+            ->first()['amount'];
     }
 
     public function points(Workout $workout)
@@ -61,7 +68,7 @@ class Competitor extends Model
         })->sum();
     }
 
-    public function powerliftingScores(Workout $workout) 
+    public function powerliftingScores(Workout $workout)
     {
         return $this->scoresInWorkout($workout)
                        ->get()
@@ -75,8 +82,15 @@ class Competitor extends Model
 
     }
 
-    public function flight() 
+    public function flight()
     {
-        return $this->belongsToMany('App\Flight')->first();
+        return $this->belongsToMany('App\Flight');
     }
+
+    public function team()
+    {
+        return $this->belongsTo('App\Team', 'team_id');
+    }
+
+
 }

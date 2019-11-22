@@ -6,29 +6,15 @@
  */
 
 require('./bootstrap');
-require('./score.js');
+require('jquery/dist/jquery.js')
 
-window.Vue = require('vue');
-
+require('bootstrap/dist/js/bootstrap.bundle.min.js')
 require('bootstrap-table');
 require('bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.js');
 require('bootstrap-table/dist/extensions/natural-sorting/bootstrap-table-natural-sorting');
 
 require('bootstrap-select');
 
-$(function(){
-    $("[data-toggle=popover]").popover({
-        html : true,
-        content: function() {
-          var content = $(this).attr("data-popover-content");
-          return $(content).children(".popover-body").html();
-        },
-        title: function() {
-          var title = $(this).attr("data-popover-content");
-          return $(title).children(".popover-heading").html();
-        }
-    });
-});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -36,6 +22,7 @@ $(function(){
  */
 
 
+/*
 let store = {
     score : 0
 };
@@ -103,6 +90,7 @@ window.startTimer = (up = true, start = null, setAmount = true) => {
         }, 1000);
     }
 };
+**/
 
 let setTimer = (totalSeconds) => {
 
@@ -114,7 +102,6 @@ let setTimer = (totalSeconds) => {
 
 window.changeScoreValidity = function(id, validity) {
     if (id) {
-        console.log(validity);
         axios.post('/api/score/' + id, {
 
             validity: validity,
@@ -123,6 +110,30 @@ window.changeScoreValidity = function(id, validity) {
             .then(function(response) {
                 console.log(response);
             });
+        location.reload(true);
+
     }
 };
+
+window.makeScoreValid = function(id) {
+    window.changeScoreValidity(id, 'valid')
+}
+window.makeScoreInvalid = function(id) {
+    window.changeScoreValidity(id, 'invalid')
+}
+window.makeScoreUndecided = function(id) {
+    window.changeScoreValidity(id, 'undecided')
+}
+
+
+$(function(){
+    $("[data-toggle=popover]").popover({
+        html : true,
+        sanitize: false,
+        content: function() {
+          var content = $(this).attr("data-popover-content");
+          return $(content).children(".popover-body").html();
+        }
+    });
+});
 

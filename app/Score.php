@@ -28,7 +28,7 @@ class Score extends Model
         return $this->workout->formatScore($this->amount);
     }
 
-    public function tableClassAttribute() 
+    public function tableClassAttribute()
     {
         if ($this->validity == "valid") {
             return "table-success";
@@ -37,5 +37,14 @@ class Score extends Model
             return "table-danger";
         }
         return "";
+    }
+
+    public function attempt()
+    {
+        $competitor = $this->competitor;
+        $allScores = $competitor->scoresInWorkout($this->workout)->get();
+        return $allScores->search(function($s) {
+            return $s->id == $this->id;
+        }) + 1;
     }
 }

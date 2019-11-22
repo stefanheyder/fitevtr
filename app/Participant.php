@@ -16,4 +16,16 @@ class Participant extends Model
         return $this->hasMany('App\Competiton');
     }
 
+    public function competitors()
+    {
+        return $this->hasMany('App\Competitor');
+    }
+
+    public function activeCompetitors()
+    {
+        return $this->hasMany('App\Competitor')
+            ->where('noncompetetive', false);
+    }
+
+
 }

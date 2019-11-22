@@ -6,9 +6,8 @@
 @import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/dist/css/bootstrap.css';
 @import '~bootstrap-select/dist/css/bootstrap-select.css';
-
 @import '~bootstrap-table/dist/bootstrap-table.css';
 
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
@@ -101,4 +100,27 @@ table {
 
 td > a {
     color: black;
+}
+
+.teamsheader {
+    font-size: 35pt;
+}
+
+.currentstandings {
+    font-size: 20pt;
+}
+
+.nextstandings {
+    font-size: 20pt;
+}
+.nextstandingsheader {
+    font-size: 20pt;
+}
+
+.nextlift {
+    font-size: 50pt;
+}
+
+.nextlifters {
+    font-size: 20pt;
 }

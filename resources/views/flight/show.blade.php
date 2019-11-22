@@ -28,7 +28,7 @@
                 <tr class="{{$competitor->is($currentCompetitor) ? "" : "" }}">
                     <td>
                         <a href="/competitor/{{$competitor->id}}" class="name-fat">
-                            {{ $competitor->name }}
+                            {{ $competitor->name }} ({{ $competitor->team->name }})
                         </a>
                     </td>
                     @foreach($flight->workouts as $workout)

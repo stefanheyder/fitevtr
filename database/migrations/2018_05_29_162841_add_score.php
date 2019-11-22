@@ -16,6 +16,7 @@ class AddScore extends Migration
         Schema::create('scores', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('competition_id')->references('id')->on('competitions');
             $table->integer('competitor_id')->references('id')->on('competitors');
             $table->integer('workout_id')->references('id')->on('workouts');
             $table->float('amount');

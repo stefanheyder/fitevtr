@@ -17,6 +17,7 @@ class CreateFlightsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->timestamps();
+            $table->integer('competition_id')->references('id')->on('competitions');
         });
 
         Schema::create('competitor_flight', function(Blueprint $table) {

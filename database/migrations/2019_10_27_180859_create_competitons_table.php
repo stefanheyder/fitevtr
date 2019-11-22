@@ -23,12 +23,21 @@ class CreateCompetitonsTable extends Migration
             $table->string('title');
         });
 
-        Schema::create('competition_participant', function(Blueprint $table) {
+        Schema::create('competition_workout', function(Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->integer('competiton_id')->references('id')->on('competitions');
-            $table->integer('participant_id')->references('id')->on('participants');
+            $table->integer('competition_id')->references('id')->on('competitions');
+            $table->integer('workout_id')->references('id')->on('workouts');
+        });
+        Schema::create('competition_competitor', function(Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
+            $table->float('weight');
+            $table->boolean('competitive')->default(True);
+
+            $table->integer('competition_id')->references('id')->on('competitions');
+            $table->integer('competitor_id')->references('id')->on('competitors');
         });
     }
 
@@ -39,7 +48,8 @@ class CreateCompetitonsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('competition_competitor');
+        Schema::dropIfExists('competition_workout');
         Schema::dropIfExists('competitions');
-        Schema::dropIfExists('competition_participant');
     }
 }
