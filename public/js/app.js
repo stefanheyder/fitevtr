@@ -43079,8 +43079,8 @@ window.changeScoreValidity = function (id, validity) {
       _method: 'put'
     }).then(function (response) {
       console.log(response);
+      location.reload(true);
     });
-    location.reload(true);
   }
 };
 

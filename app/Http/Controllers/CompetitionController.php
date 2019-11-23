@@ -49,7 +49,10 @@ class CompetitionController extends Controller
     public function show(Competition $competition)
     {
         $participants = $competition->teams();
-        return View::make('competition/current_standings_viewers', compact(['competition', 'participants']));
+        $nextUp = $competition->nextUp();
+        $remainingLifts = max($nextUp->count() - 3, 0);
+        $nextUp = $nextUp->pad(3,"");
+        return View::make('competition/current_standings_viewers', compact(['competition', 'participants', 'nextUp', 'remainingLifts']));
     }
 
     /**

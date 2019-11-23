@@ -39,17 +39,30 @@ class Competition extends Model
 
         $didFirstWin = $firstPoints->zip($secondPoints)->map(function($x) {
             if (abs($x[0] - $x[1]) < 0.01) {
-                return 1 / 2;
+                return 0;
             }
             if ($x[0] > $x[1]) {
                 return 1;
             }
             return 0;
         });
+        $didSecondWin = $firstPoints->zip($secondPoints)->map(function($x) {
+            if (abs($x[0] - $x[1]) < 0.01) {
+                return 0;
+            }
+            if ($x[1] > $x[0]) {
+                return 1;
+            }
+            return 0;
+        });
 
+        $firstScore = $didFirstWin->sum();
+        $secondScore = $didSecondWin->sum();
 
-        $firstScore = $didFirstWin->sum() + ($firstTotal > $secondTotal);
-        $secondScore = $workouts->count() + 1 - $firstScore;
+        if ($firstScore + $secondScore == $workouts->count()) {
+            $firstScore = $firstScore + ($firstTotal > $secondTotal);
+            $secondScore = $secondScore + ($firstTotal < $secondTotal);
+        }
 
         return $firstScore . ":" . $secondScore;
     }
@@ -106,7 +119,8 @@ class Competition extends Model
     {
         return $this->nextLifts()
                     ->map(function($s) {
-                        return $s->competitor->name . "(" . $s->competitor->team->name .  "): " . $s->amount . ' kg'; #TODO: increment, number of attempt
+                        $team = $s->competitor->team;
+                        return $s->competitor->name . " (" . $team->shorthand .  "): " . $s->amount . ' kg (' . $s->attempt() . '. Versuch ' . $s->workout->name .')'; #TODO: increment, number of attempt
                     })->values();
     }
 
@@ -127,13 +141,19 @@ class Competition extends Model
                               ->sortBy(function($score) {
                                   $attempt = $score->attempt();
                                   $weight = $score->amount;
-                                  return [$attempt, $weight];
+                                  $updated_at = $score->updated_at;
+                                  return [$attempt, $weight, $updated_at];
                               });
     }
 
     public function totalScoreIfNextValid()
     {
         $nextLift = $this->nextLifts()->first();
+
+        $competitor = $nextLift->competitor;
+        if ($this->competitors->find($competitor->id)->pivot->competitive == 0) {
+            return $this->totalScore();
+        }
 
         $workouts = $this->workouts;
         $first = $this->teams()[0];
@@ -146,21 +166,34 @@ class Competition extends Model
             return $this->scoreIfNextValid($second, $w);
         });
 
+        $firstTotal = $firstPoints->sum();
+        $secondTotal = $secondPoints->sum();
         $didFirstWin = $firstPoints->zip($secondPoints)->map(function($x) {
             if (abs($x[0] - $x[1]) < 0.01) {
-                return 1 / 2;
+                return 0;
             }
             if ($x[0] > $x[1]) {
                 return 1;
             }
             return 0;
         });
+        $didSecondWin = $firstPoints->zip($secondPoints)->map(function($x) {
+            if (abs($x[0] - $x[1]) < 0.01) {
+                return 0;
+            }
+            if ($x[1] > $x[0]) {
+                return 1;
+            }
+            return 0;
+        });
 
-        $firstTotal = $firstPoints->sum();
-        $secondTotal = $secondPoints->sum();
+        $firstScore = $didFirstWin->sum();
+        $secondScore = $didSecondWin->sum();
 
-        $firstScore = $didFirstWin->sum() + ($firstTotal > $secondTotal);
-        $secondScore = $workouts->count() + 1 - $firstScore;
+        if ($firstScore + $secondScore == $workouts->count()) {
+            $firstScore = $firstScore + ($firstTotal > $secondTotal);
+            $secondScore = $secondScore + ($firstTotal < $secondTotal);
+        }
 
         return $firstScore . ":" . $secondScore;
     }
@@ -169,13 +202,18 @@ class Competition extends Model
     {
         $nextLift = $this->nextLifts()->first();
 
+        $competitor = $nextLift->competitor;
+        if ($this->competitors->find($competitor->id)->pivot->competitive == 0) {
+            return $this->score($team, $workout);
+        }
+
         $isSameWorkout = $workout->id == $nextLift->workout->id;
         $isSameTeam = $team->id == $nextLift->competitor->team_id;
 
         if ($isSameWorkout && $isSameTeam) {
             $competitor = $nextLift->competitor;
 
-            return $this->score($team, $workout) + $this->singlePoints($competitor, $workout, $nextLift->amount); - $this->singlePoints($competitor, $workout);
+            return $this->score($team, $workout) + $this->singlePoints($competitor, $workout, $nextLift->amount) - $this->singlePoints($competitor, $workout);
         }
         return $this->score($team, $workout);
     }

@@ -4,16 +4,16 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                Flights 
+                Flights
                 <a href="{{route('flight.create')}}" class="fas fa-plus-circle"></a>
             </h3>
         </div>
         <div class="panel-body">
             <ul class="list-group">
-                @foreach(App\Flight::all() as $flight) 
+                @foreach(App\Flight::all() as $flight)
                     <li class="list-group-item">
                         <a href={{route('flight.show', $flight)}}>
-                            {{$flight->title}}
+                            {{$flight->title}}  (Beendet: {{ $flight->finished() ? 'Ja' : 'Nein' }})
                         </a>
                         <a href={{route('flight.edit', $flight)}} class="fas fa-pencil-alt pull-right">
 
@@ -37,7 +37,7 @@
         </div>
         <div class="panel-body">
             <ul class="list-group">
-                @foreach(App\Competitor::orderBy('name')->get() as $competitor) 
+                @foreach(App\Competitor::orderBy('name')->get() as $competitor)
                     <li class="list-group-item">
                         <a href={{route('competitor.show', $competitor)}}>
                             {{$competitor->name}}
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div>
-        
+
     <modal></modal>
     </div>
 @stop

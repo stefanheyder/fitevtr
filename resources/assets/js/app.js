@@ -109,8 +109,8 @@ window.changeScoreValidity = function(id, validity) {
         })
             .then(function(response) {
                 console.log(response);
+                location.reload(true);
             });
-        location.reload(true);
 
     }
 };

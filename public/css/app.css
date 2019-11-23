@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
+/*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
@@ -15376,26 +15376,31 @@ td > a {
 }
 
 .teamsheader {
-  font-size: 35pt;
+  font-size: 30pt;
+  background-color: lightgrey;
 }
 
 .currentstandings {
-  font-size: 20pt;
+  font-size: 30pt;
 }
 
 .nextstandings {
-  font-size: 20pt;
+  font-size: 30pt;
 }
 
 .nextstandingsheader {
-  font-size: 20pt;
+  font-size: 40pt;
 }
 
 .nextlift {
-  font-size: 50pt;
+  font-size: 30pt;
 }
 
 .nextlifters {
   font-size: 20pt;
+}
+
+.score {
+  font-size: 50px;
 }
 

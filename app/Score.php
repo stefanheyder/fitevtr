@@ -47,4 +47,18 @@ class Score extends Model
             return $s->id == $this->id;
         }) + 1;
     }
+
+    public function nextAttempt()
+    {
+        $competitor = $this->competitor;
+        $allScores = $competitor->scoresInWorkout($this->workout)->get();
+        $currentIndex = $allScores->search(function($s) {
+            return $s->id == $this->id;
+        });
+
+        if ($currentIndex + 1 < $allScores->count()) {
+            return $allScores[$currentIndex + 1];
+        }
+        return null;
+    }
 }

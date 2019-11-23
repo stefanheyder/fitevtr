@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row teamsheader mb-5">
+<div class="row teamsheader mb-5 mt-3">
     <div class="col text-left">
         {{ $participants[0]->name }}
     </div>
-    <div class="col text-center mx-auto">
+    <div class="col text-center score">
         {{ $competition->totalScore() }}
     </div>
     <div class="col text-right">
@@ -37,7 +37,12 @@
     </div>
 </div>
 
-<div class="row nextlift mb-5">
+<div class="row nextlift">
+    <div class="col text-center">
+        Nächste Hebung:
+    </div>
+</div>
+<div class="row nextlift mb-2">
     <div class="col text-center">
         {{ $competition->nextUp()[0] }}
     </div>
@@ -47,8 +52,8 @@
     Wenn gültig:
     </div>
 </div>
-<div class="row text-center">
-    <div class="col teamsheader">
+<div class="row text-center mb-5">
+    <div class="col teamsheader score">
         {{ $competition->totalScoreIfNextValid() }}
     </div>
 </div>
@@ -78,11 +83,27 @@
 </div>
 <div class="row nextlifters text-center mt-5">
     <div class="col text-center">
-        {{ $competition->nextUp()[1] }}
+        {{ $nextUp[1] }}
     </div>
 
     <div class="col text-center">
-        {{ $competition->nextUp()[2] }} +{{ $competition->nextUp()->slice(3)->count() }} Hebungen
+        {{ $nextUp[2] }} +{{ $remainingLifts }} Hebungen
     </div>
 </div>
 @stop
+
+@section('extraJS')
+    <script>
+        window.setInterval(function() {
+    axios.get('/api/shouldUpdate', {
+        params: {
+            lastUpdate: timestamp
+        }
+    }).then(function(response) {
+        if (response.data.update) {
+            location.reload(true);
+        }
+    });
+    }, 5000)
+    </script>
+@endsection

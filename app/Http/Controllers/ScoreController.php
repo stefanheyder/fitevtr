@@ -90,6 +90,7 @@ class ScoreController extends Controller
     {
         $score->fill($request->all());
         $score->save();
+
         return Redirect::back();
     }
 
