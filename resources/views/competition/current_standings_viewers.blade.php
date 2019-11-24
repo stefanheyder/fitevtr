@@ -44,7 +44,7 @@
 </div>
 <div class="row nextlift mb-2">
     <div class="col text-center">
-        {{ $competition->nextUp()[0] }}
+        {{ $nextUp[0] }}
     </div>
 </div>
 <div class="row text-center">

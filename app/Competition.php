@@ -133,7 +133,7 @@ class Competition extends Model
             });
 
         if ($ongoingflights->isEmpty()) {
-            return [];
+            return collect([]);
         }
         return $ongoingflights->first()
                               ->scores()
@@ -141,14 +141,18 @@ class Competition extends Model
                               ->sortBy(function($score) {
                                   $attempt = $score->attempt();
                                   $weight = $score->amount;
-                                  $updated_at = $score->updated_at;
-                                  return [$attempt, $weight, $updated_at];
+                                  //$updated_at = $score->updated_at;
+                                  $competitor_weight = $this->competitors->find($score->competitor_id)->pivot->weight;
+                                  return [$attempt, $weight, $competitor_weight];
                               });
     }
 
     public function totalScoreIfNextValid()
     {
         $nextLift = $this->nextLifts()->first();
+        if ($this->nextLifts()->isEmpty()) {
+            return $this->totalScore();
+        }
 
         $competitor = $nextLift->competitor;
         if ($this->competitors->find($competitor->id)->pivot->competitive == 0) {
@@ -201,6 +205,9 @@ class Competition extends Model
     public function scoreIfNextValid($team, $workout)
     {
         $nextLift = $this->nextLifts()->first();
+        if ($this->nextLifts()->isEmpty()) {
+            return $this->score($team, $workout);
+        }
 
         $competitor = $nextLift->competitor;
         if ($this->competitors->find($competitor->id)->pivot->competitive == 0) {

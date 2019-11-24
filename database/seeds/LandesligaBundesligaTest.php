@@ -24,11 +24,11 @@ class LandesligaBundesligaTest extends Seeder
             'shorthand' => 'SV90'
         ]);
         $esvmuen = Team::create([
-            'name' => 'ESV-Freimann München',
-            'shorthand' => 'ESV-FM'
+            'name' => 'ESV-München Freimann',
+            'shorthand' => 'ESV-M F'
         ]);
         $esv_muehl = Team::create([
-            'name' =>'ESV Mühlhausen',
+            'name' =>'ESV Lok Mühlhausen',
             'shorthand' => 'ESV-M'
         ]);
 
@@ -48,27 +48,28 @@ class LandesligaBundesligaTest extends Seeder
             $landesliga = Competition::create([
                 'type' => 'Landesliga',
                 'date' => '2019-11-23',
-                'title' => 'SV90 Gräfenroda e.V. vs. ESV Mühlhausen'
+                'title' => 'SV90 Gräfenroda e.V. vs. ESV Lok Mühlhausen'
             ]);
 
             $landesliga->workouts()->sync([$snatch->id, $cnj->id]);
 
             $first_comps = [
-                ['gender' => 'male', 'weight' => 84.0, 'sn' => 65, 'cnj' => 90, 'competitive' => true, 'name' => 'Stefan Heyder'],
-                ['gender' => 'male', 'weight' => 92, 'sn' => 75, 'cnj' => 105, 'competitive' => true, 'name' => 'Sebastian Semper'],
-                ['gender' => 'male', 'weight' => 82.2, 'sn' => 73, 'cnj' => 93, 'competitive' => true, 'name' => 'Mario Machleit'],
-                ['gender' => 'male', 'weight' => 95.3, 'sn' => 97, 'cnj' => 118, 'competitive' => true, 'name' => 'Philipp Schreck'],
-                ['gender' => 'male', 'weight' => 85.4, 'sn' => 80, 'cnj' => 110, 'competitive' => false, 'name' => 'Gregor Taube'],
-                ['gender' => 'male', 'weight' => 107, 'sn' => 0, 'cnj' => 0, 'competitive' => false, 'name' => 'Tarek Schellhorn']
+                ['gender' => 'male', 'weight' => 83.2, 'sn' => 75, 'cnj' => 85, 'competitive' => true, 'name' => 'Stefan Heyder'],
+                ['gender' => 'male', 'weight' => 81.9, 'sn' => 80, 'cnj' => 100, 'competitive' => true, 'name' => 'Gregor Taube'],
+                ['gender' => 'male', 'weight' => 94, 'sn' => 90, 'cnj' => 115, 'competitive' => true, 'name' => 'Philipp Schreck'],
+                ['gender' => 'male', 'weight' => 114.9, 'sn' => 100, 'cnj' => 125, 'competitive' => true, 'name' => 'Richard Hendrich'],
+                ['gender' => 'male', 'weight' => 65.4, 'sn' => 56, 'cnj' => 70, 'competitive' => false, 'name' => 'Jonas Wahl'],
+                ['gender' => 'female', 'weight' => 68.7, 'sn' => 0, 'cnj' => 0, 'competitive' => false, 'name' => 'Diana Kurbanova'],
+                ['gender' => 'male', 'weight' => 77.5, 'sn' => 0, 'cnj' => 0, 'competitive' => false, 'name' => 'Ibrahim Dudorkhanov']
             ];
             $second_comps = [
-                ['gender' => 'male', 'weight' => 96.2, 'sn' => 65, 'cnj' => 90, 'competitive' => true, 'name' => 'Matthias Hartwig'],
-                ['gender' => 'male', 'weight' => 84.7, 'sn' => 66, 'cnj' => 85, 'competitive' => true, 'name' => 'Martin Weisheit'],
-                ['gender' => 'male', 'weight' => 96.4, 'sn' => 70, 'cnj' => 95, 'competitive' => true, 'name' => 'Matthias Fiedler'],
-                ['gender' => 'male', 'weight' => 83.9, 'sn' => 92, 'cnj' => 115, 'competitive' => true, 'name' => 'Christian Kühmstedt']
+                ['gender' => 'male', 'weight' => 70.3, 'sn' => 65, 'cnj' => 80, 'competitive' => true, 'name' => 'Jürgen Greiner'],
+                ['gender' => 'male', 'weight' => 70.5, 'sn' => 55, 'cnj' => 70, 'competitive' => false, 'name' => 'Silvio Simon'],
+                ['gender' => 'male', 'weight' => 78.6, 'sn' => 65, 'cnj' => 85, 'competitive' => true, 'name' => 'Andreas Leiniger'],
+                ['gender' => 'male', 'weight' => 79.1, 'sn' => 80, 'cnj' => 95, 'competitive' => true, 'name' => 'Cristoph Böhm']
             ];
-            $first_flight_ids = [1,2,7,8];
-            $second_flight_ids = [3,4,5,9,10];
+            $first_flight_ids = [1,2,8,9];
+            $second_flight_ids = [3,4,5,10,11];
             $team = $sv90;
             foreach ($first_comps as $info) {
                 $c = Competitor::create(['name' => $info['name'], 'gender' => $info['gender'], 'team_id' => $team->id]);
@@ -145,31 +146,36 @@ class LandesligaBundesligaTest extends Seeder
             $bundesliga = Competition::create([
                 'type' => 'Bundesliga',
                 'date' => '2019-11-23',
-                'title' => 'SV90 Gräfenroda e.V. vs. ESV Freimann München'
+                'title' => 'SV90 Gräfenroda e.V. vs. ESV München Freimann'
             ]);
 
             $bundesliga->workouts()->sync([$snatch->id, $cnj->id]);
 
             $first_comps = [
-                ['gender' => 'male', 'weight' => 58.3, 'sn' => 68, 'cnj' => 82, 'competitive' => true, 'name' => 'Elias Sensche'],
-                ['gender' => 'female', 'weight' => 58.1, 'sn' => 485, 'cnj' => 0, 'competitive' => true, 'name' => 'Marie-Sophie Breitschuh'],
-                ['gender' => 'male', 'weight' => 64.4, 'sn' => 82, 'cnj' => 102, 'competitive' => true, 'name' => 'Fritz Heyer'],
-                ['gender' => 'female', 'weight' => 56.0, 'sn' => 60, 'cnj' => 67, 'competitive' => true, 'name' => 'Julia Perlt'],
-                ['gender' => 'male', 'weight' => 96.9, 'sn' => 126.0, 'cnj' => 157, 'competitive' => true, 'name' => 'Andre Langkabel'],
-                ['gender' => 'male', 'weight' => 97.4, 'sn' => 125.0, 'cnj' => 155, 'competitive' => true, 'name' => 'Philipp Griebel'],
-                ['gender' => 'male', 'weight' => 76.6, 'sn' => 0, 'cnj' => 114, 'competitive' => true, 'name' => 'Nico Holtmann']
+                ['gender' => 'female', 'weight' => 53.9, 'sn' => 45, 'cnj' => 0, 'competitive' => true, 'name' => 'Marie-Sophie Breitschuh'],
+                ['gender' => 'female', 'weight' => 56.0, 'sn' => 52, 'cnj' => 65, 'competitive' => true, 'name' => 'Julia Perlt'],
+                ['gender' => 'male', 'weight' => 62, 'sn' => 80, 'cnj' => 95, 'competitive' => true, 'name' => 'Fritz Heyer'],
+
+                ['gender' => 'female', 'weight' => 71.7, 'sn' => 60, 'cnj' => 0, 'competitive' => true, 'name' => 'Christina Büller'],
+                ['gender' => 'male', 'weight' => 91.9, 'sn' => 110, 'cnj' => 140, 'competitive' => true, 'name' => 'Andre Langkabel'],
+                ['gender' => 'male', 'weight' => 94.3, 'sn' => 120, 'cnj' => 150, 'competitive' => true, 'name' => 'Philipp Griebel'],
+
+                ['gender' => 'male', 'weight' => 87.1, 'sn' => 0, 'cnj' => 120, 'competitive' => true, 'name' => 'Philipp Stecklum'],
+                ['gender' => 'male', 'weight' => 76.3, 'sn' => 0, 'cnj' => 105, 'competitive' => true, 'name' => 'Nico Holtmann']
             ];
             $second_comps = [
-                ['gender' => 'female', 'weight' => 74, 'sn' => 69, 'cnj' => 87, 'competitive' => true, 'name' => 'Sarah Jacobs'],
-                ['gender' => 'female', 'weight' => 70.7, 'sn' => 70, 'cnj' => 87, 'competitive' => true, 'name' => 'Anna-Carina Häusler'],
-                ['gender' => 'female', 'weight' => 70.6, 'sn' => 74, 'cnj' => 94, 'competitive' => true, 'name' => 'Lisa Rieß'],
-                ['gender' => 'female', 'weight' => 78.4, 'sn' => 71, 'cnj' => 0, 'competitive' => true, 'name' => 'Jessica Dannheimer'],
-                ['gender' => 'male', 'weight' => 79.6, 'sn' => 102, 'cnj' => 136, 'competitive' => true, 'name' => 'Ali Isilay'],
-                ['gender' => 'male', 'weight' => 102.3, 'sn' => 130, 'cnj' => 156, 'competitive' => true, 'name' => 'Florian Schnurrer'],
-                ['gender' => 'male', 'weight' => 80.9, 'sn' => 0, 'cnj' => 130, 'competitive' => true, 'name' => 'Saadettin Karaca']
+                ['gender' => 'female', 'weight' => 66.7, 'sn' => 45, 'cnj' => 60, 'competitive' => true, 'name' => 'Verena Zierer'],
+                ['gender' => 'female', 'weight' => 61.4, 'sn' => 55, 'cnj' => 67, 'competitive' => true, 'name' => 'Sarah Klitzke'],
+                ['gender' => 'male', 'weight' => 70.0, 'sn' => 78, 'cnj' => 98, 'competitive' => true, 'name' => 'Jingyi Wang'],
+
+                ['gender' => 'female', 'weight' => 70.9, 'sn' => 70, 'cnj' => 85, 'competitive' => true, 'name' => 'Anna-Carina Häusler'],
+                ['gender' => 'female', 'weight' => 71, 'sn' => 65, 'cnj' => 80, 'competitive' => true, 'name' => 'Lisa Rieß'],
+                ['gender' => 'male', 'weight' => 83.8, 'sn' => 114, 'cnj' => 150, 'competitive' => true, 'name' => 'Ali Isilay'],
+
+                ['gender' => 'male', 'weight' => 97.3, 'sn' => 120, 'cnj' => 150, 'competitive' => true, 'name' => 'Florian Schnurrer']
             ];
-            $first_flight_ids = [1,2,3,7,8,9];
-            $second_flight_ids = [4,5,6,10,11,12];
+            $first_flight_ids = [1,2,3,8,9,10,11];
+            $second_flight_ids = [4,5,6,7,12,13,14,15];
             $team = $sv90;
             foreach ($first_comps as $info) {
                 $c = Competitor::create(['name' => $info['name'], 'gender' => $info['gender'], 'team_id' => $team->id]);
