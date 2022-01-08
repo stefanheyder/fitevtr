@@ -1,0 +1,21 @@
+# Feedback Landesliga / Bundesliga
+
+- 3 Teams parallel - testen (Finale BL!)
+- Eingabemaske für den gesamten Wettkampf (insb. pivot-Dinge wie Gewicht / Competitive etc.)
+- Tests für Sinclair
+- Sinclair für Masters / Jugend
+- Versuche kann man auch verzichten
+- In den Flights auch die Sinclair / Relativ Punkte anzeigen, ebenso Gewicht (bessere Kontrolle für Eingabe)
+- +1 bis +10 Steigungs Buttons (weniger eingeben, mit )
+- Entweder: mehrere Flights auf einmal anschauen oder Vorwärts / Rückwärts Buttons.
+- Flights: Korrekte Heberreihenfolge
+- Reihenfolge der Hebungen: Bei ties korrekte Regel verwenden
+- Design der Besucheranzeige überarbeiten: Besser hervorheben wer die nächsten Heber sind
+- Seb:
+    - Bilder von Athleten
+    - Logos von Vereinen
+- Unterstütze Team unabhängige Wettkämpfe
+    - Dann keine Gesamtstandings sondern eine Übersicht über aktuelle Leistung und nächste Versuche
+- 1,2,3 Judges implementieren
+- 3. Versuch automatisch erhöhen wenn 1. gültig
+- gleiches Gewicht sollte gleiche Reihenfolge in Viewer und Judge ansicht sein ...

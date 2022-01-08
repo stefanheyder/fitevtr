@@ -10,14 +10,14 @@ use App\Workout;
 
 class FlightController extends Controller
 {
-    public function index() 
+    public function index()
     {
         $flights = Flight::all();
 
         return View::make('flight/index', compact('flights'));
     }
 
-    public function show(Flight $flight) 
+    public function show(Flight $flight)
     {
         $currentLift = Workout::all()
             ->filter(function($workout) use($flight){
@@ -42,7 +42,7 @@ class FlightController extends Controller
 
         $orderedCompetitors = $flight
             ->competitors
-            ->sortBy(function($competitor) use($currentLift, $currentAttempt){       
+            ->sortBy(function($competitor) use($currentLift, $currentAttempt){
                 $scores = $competitor->powerliftingScores($currentLift);
                 return $scores[$currentAttempt - 1]->amount;
             });
@@ -60,7 +60,7 @@ class FlightController extends Controller
             ->with('orderedCompetitors', $orderedCompetitors);
     }
 
-    public function edit(Flight $flight) 
+    public function edit(Flight $flight)
     {
         return View::make('flight/edit')
             ->with('flight', $flight);
@@ -95,7 +95,7 @@ class FlightController extends Controller
         return redirect(route('flight.show', $flight));
     }
 
-    public function destroy(Flight $flight) 
+    public function destroy(Flight $flight)
     {
         $flight->competitors()->detach();
         $flight->workouts()->detach();

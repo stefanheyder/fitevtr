@@ -14,9 +14,9 @@ class CompetiitonSeeder extends Seeder
     public function run()
     {
         Compeition::create([
-            'title' => 'SV 90 Gräfenroda vs. AC Suhl',
+            'title' => 'Test Wettkampf SLZ',
             'type' => 'Landesliga',
-            'date' => '2019-11-26'
+            'date' => '2020-09-05'
         ])
     }
 }

@@ -97,6 +97,23 @@ class Competition extends Model
     }
 
 
+    public function singleTotalPoints($c, $workouts) {
+        $sum = 0;
+        foreach ($workouts as $w) {
+            $sum += $this->singlePoints($c, $w);
+        }
+        return $sum;
+    }
+
+    public function singleTotalWeight($c, $workouts)
+    {
+        $sum = 0;
+        foreach($workouts as $workout) {
+            $sum += $c->bestScore($workout);
+        }
+        return $sum;
+    }
+
     public function singlePoints($c, $workout, $score = NULL)
     {
         if (is_null($score)) {
