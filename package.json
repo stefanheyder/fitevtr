@@ -25,7 +25,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.3.1",
         "bootstrap-select": "^1.13.2",
-        "bootstrap-table": "^1.12.1",
+        "bootstrap-table": "^1.20.2",
         "node-sass": "^4.12.0"
     }
 }
